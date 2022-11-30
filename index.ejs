@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<title>LENA</title>
+</head>
+<body>
+	<form action="/" method="post">
+		<br>
+		<div class="container">
+			<h1 class="display-1">Lena</h1>
+			<br>
+			<div class="row">
+				<div class="col">
+					<h1 class="display-6" id="header">Datasets</h1>
+					<ul class="list-group">
+						<label class="list-group-item">
+							<input disabled checked class="form-check-input me-1" type="checkbox" name="datasets" value="CID2013" aria-label="...">
+							CID2013
+						</label>
+					</ul>
+				</div>
+				<div class="col">
+					<h1 class="display-6">Codec</h1>
+					<select disabled name="codec" class="form-select" aria-label="Default select example">
+						<option>WebP</option>
+					</select>
+
+					<br>
+					<h1 class="display-6" style="padding-top: 5px;">Metrics</h1>
+					<ul class="list-group">
+						<label class="list-group-item">
+							<input disabled checked class="form-check-input me-1" type="checkbox" name="metrics" value="MSE" aria-label="...">
+							MSE
+						</label>
+					</ul>
+				</div>
+			</div>
+			<br>
+				<div class="text-center">
+					<form method="post" action="/">
+						<button id="run" type="submit" class="btn btn-primary btn-lg btn-block">Start testing</button>
+					</form>
+				</div>
+			<br>
+		</div>
+	</form>
+	<textarea readonly rows="15" style="width: 80%; height: 100%; display: block; margin-left: auto; margin-right: auto;">
+<%= data %>
+	</textarea>
+</body>
+</html>
