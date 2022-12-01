@@ -24,6 +24,7 @@ git clone https://github.com/andreylzmw/lena.git && cd lena
 
 ## 1. Download pre-compiled and extracted CID2013 image database from Yandex Disk
 ```
+pip3 install wget requests
 python3 ya.py
 ```
 After downloading (there will be error) rename tmp file to output.zip and unzip it.
