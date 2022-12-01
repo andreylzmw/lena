@@ -41,6 +41,7 @@ gcc jpeg.c -o jpeg -lm && gcc metrics.c -o metrics -lm
 
 ## 3. Run node js server
 ```
+npm install
 node server.js
 ```
 
