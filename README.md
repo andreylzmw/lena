@@ -47,3 +47,11 @@ node server.js
 
 ## 4. Check locahost on port 3000 and click 'Start testing'
 ## 5. Wait while page loading and enjoy results!
+
+# TODO
+- [] Fix downloading process
+- [] Process datasets (fix paths)
+- [] Replace python with make for all auto-steps
+- [] Install depencies automatically
+- [] Open image from with (also as runs executable)
+- [] Live output in web app
