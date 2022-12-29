@@ -49,9 +49,12 @@ node server.js
 ## 5. Wait while page loading and enjoy results!
 
 # TODO
-- [] Fix downloading process
-- [] Process datasets (fix paths)
-- [] Replace python with make for all auto-steps
-- [] Install depencies automatically
-- [] Open image from with (also as runs executable)
+- [x] Fix downloading process
+- [x] Process datasets (fix paths)
+- [x] Replace python with make for all auto-steps
+- [x] Install depencies automatically
+- [x] Open image from with (also as runs executable)
 - [] Live output in web app
+- [] Perfomance tests
+- [] BMP decoder
+- [] PNG decoder
