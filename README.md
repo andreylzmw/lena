@@ -38,7 +38,7 @@ make CID2013
 
 ## 3. Run server
 ```
-make server
+make run
 ```
 
 ## 4. Check locahost on port 3000 and click 'Start testing'
