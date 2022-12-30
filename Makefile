@@ -1,5 +1,6 @@
 LOGS_CREATED := $(shell mkdir logs)
 DATABASES_CREATED := $(shell cd databases && echo 1 || echo 0)
+OUTPUT_CREATED := $(shell cd src/output && echo 1 || echo 0)
 
 BREW_INSTALLED := $(shell brew -v > logs/brew.txt && echo 1 || echo 0)
 GCC_INSTALLED := $(shell gcc -v &> logs/gcc.txt && echo 1 || echo 0)
@@ -75,18 +76,19 @@ endif
 	$(info installing p7zip...)
 	brew install p7zip
 
-	echo "downloading CID2013..."
-	./download.py "https://disk.yandex.ru/d/J18bMLCl_zmaTw" databases/CID2013.7z
+	$(info downloading CID2013...)
+	./download.py "https://disk.yandex.ru/d/URF04zSkDRDlyQ" databases/CID2013.7z
 	
-	echo "unpacking CID2013..."
+	$(info unpacking CID2013...)
 	7za -odatabases/CID2013 x databases/CID2013.7z
 	
+ifeq ($(OUTPUT_CREATED), 0)
 	mkdir "src/output"
+endif
+
 	gcc src/jpeg.c -o src/output/jpeg && gcc src/metrics.c -o src/output/metrics
 
 	./helpers/process.py databases/CID2013
-
-	./src/output/metrics databases/CID2013.txt
 
 run:
 	npm --prefix server install ./server
