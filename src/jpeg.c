@@ -1945,7 +1945,7 @@ JPEG processJPEG(char *path, char *outputPath) {
 
 				FILE *outputFile = fopen(outputPath, "w+");
 				fprintf(outputFile, "%s\n", path);
-				fprintf(outputFile, "%lld %lld\n", jpeg.width, jpeg.height);
+				fprintf(outputFile, "%ld %ld\n", jpeg.width, jpeg.height);
 
 				for (int p = 0; p < jpeg.height; p++)
 					for (int q = 0; q < jpeg.width; q++)

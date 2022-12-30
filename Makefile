@@ -1,72 +1,41 @@
-LOGS_CREATED := $(shell mkdir logs)
+OS := $(shell uname -s)
+
 DATABASES_CREATED := $(shell cd databases && echo 1 || echo 0)
 OUTPUT_CREATED := $(shell cd src/output && echo 1 || echo 0)
 
-BREW_INSTALLED := $(shell brew -v > logs/brew.txt && echo 1 || echo 0)
-GCC_INSTALLED := $(shell gcc -v &> logs/gcc.txt && echo 1 || echo 0)
-NODE_INSTALLED := $(shell node -v &> logs/node.txt && echo 1 || echo 0)
-PYTHON_INSTALLED := $(shell python3 -V &> logs/python.txt && echo 1 || echo 0)
-FFMPEG_INSTALLED := $(shell ffmpeg -version &> logs/ffmpeg.txt && echo 1 || echo 0)
-CONVERT_INSTALLED := $(shell convert -v &> logs/convert.txt && echo 1 || echo 0)
-
 install:
+ifeq ($(OS), Linux)
+	ulimit -n 1024
+endif
 
-# INSTALL HOMEBREW
-	$(info checking if brew is installed...)
-ifeq ($(BREW_INSTALLED), 0)
-	$(info brew not installed, installing...)
-	curl -O "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
-	/bin/bash install.sh
-	rm -f install.sh
+# INSTALL CURL
+ifeq ($(OS), Linux)
+	sudo apt-get install curl
 else
-	$(info brew installed, continue...)
+	$(info curl installed, continue...)
 endif
 
 # INSTALL GCC
-	$(info checking if gcc is installed...)
-ifeq ($(GCC_INSTALLED), 0)
-	$(info gcc not installed, installing...)
-	xcode-select --install
+ifeq ($(OS), Linux)
+	brew install gcc
 else
-	$(info gcc installed, continue...)
+	xcode-select --install
 endif
+
+# INSTALL WGET
+	brew install wget
 
 # INSTALL NODE
-	$(info checking if node is installed...)
-ifeq ($(NODE_INSTALLED), 0)
-	$(info node not installed, installing...)
 	brew install node
-else
-	$(info node installed, continue...)
-endif
 
 # INSTALL PYTHON
-	$(info checking if python is installed...)
-ifeq ($(PYTHON_INSTALLED), 0)
-	$(info python not installed, installing...)
 	brew install python3
-else
-	$(info python installed, continue...)
-endif
 
 # INSTALL FFMPEG
-	$(info checking if ffmpeg is installed...)
-ifeq ($(FFMPEG_INSTALLED), 0)
-	$(info ffmpeg not installed, installing...)
 	brew install ffmpeg
-else
-	$(info ffmpeg installed, continue...)
-endif
 
 # INSTALL CONVERT
-	$(info checking if convert is installed...)
-ifeq ($(CONVERT_INSTALLED), 0)
-	$(info convert not installed, installing...)
 	brew install imagemagick
-else
-	$(info convert installed, continue...)
-endif
-
 
 CID2013:
 ifeq ($(DATABASES_CREATED), 0)
@@ -86,8 +55,11 @@ ifeq ($(OUTPUT_CREATED), 0)
 	mkdir "src/output"
 endif
 
+ifeq ($(OS), Linux)
+	gcc src/jpeg.c -o src/output/jpeg -lm && gcc src/metrics.c -o src/output/metrics -lm
+else
 	gcc src/jpeg.c -o src/output/jpeg && gcc src/metrics.c -o src/output/metrics
-
+endif
 	./helpers/process.py databases/CID2013
 
 run:
@@ -98,5 +70,3 @@ run:
 clean:
 	rm -f src/output/metrics src/output/jpeg
 	rm -rf server/node_modules
-	rm -rf logs
-

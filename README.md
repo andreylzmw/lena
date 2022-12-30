@@ -16,6 +16,9 @@ Supported metrics: MSE
 
 Supported databases: CID2013
 
+# Depencies
+- brew
+
 # Build (only for macOS)
 ## 0. Clone repo
 ```
