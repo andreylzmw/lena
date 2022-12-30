@@ -20,7 +20,7 @@ Supported databases: CID2013
 - brew
 - xcode-tools (macOS)
 
-# Build (only for macOS)
+# Build
 ## 0. Clone repo
 ```
 git clone https://github.com/andreylzmw/lena.git && cd lena
