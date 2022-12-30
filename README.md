@@ -18,6 +18,7 @@ Supported databases: CID2013
 
 # Depencies
 - brew
+- xcode-tools (macOS)
 
 # Build (only for macOS)
 ## 0. Clone repo

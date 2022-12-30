@@ -18,8 +18,6 @@ endif
 # INSTALL GCC
 ifeq ($(OS), Linux)
 	brew install gcc
-else
-	xcode-select --install
 endif
 
 # INSTALL WGET
